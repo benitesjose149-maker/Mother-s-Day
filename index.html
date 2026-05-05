@@ -52,11 +52,15 @@
                     <div class="reveal-bg"></div>
                     <div class="reveal-content">
                         <button id="close-card" class="close-btn">&times;</button>
+                        
                         <div id="portrait-holder" class="portrait-frame" style="display: block !important;">
                             <img id="card-portrait" src="./assets/principal.jpg" alt="Rosmery" class="portrait-img">
                         </div>
+
                         <h2 id="card-name">Querida Rosmery</h2>
-                        <p id="card-text">Gracias por ser nuestra guía, nuestro refugio y nuestra mejor amiga. Eres el corazón de esta familia. ¡Te amamos!</p>
+                        <p id="card-text" style="font-size: 1.2rem; line-height: 1.6; max-width: 600px;">
+                            Mamá, gracias por ser nuestro pilar incondicional, por cada sacrificio y por el amor infinito que nos regalas cada día. Eres el corazón que mantiene unida a esta familia y nuestra mayor inspiración. Hoy celebramos tu vida, tu fuerza y tu dulzura. ¡Te amamos con todo el corazón, Rosmery!
+                        </p>
                         <button id="view-album-btn" class="album-btn">VER ÁLBUM FAMILIAR</button>
                     </div>
                 </div>
@@ -70,7 +74,7 @@
                     </div>
                 </div>
 
-                <!-- Visor de Fotos (Lightbox) -->
+                <!-- Visor de Fotos -->
                 <div id="image-viewer" class="viewer-modal">
                     <button class="viewer-close" onclick="closeModal('image-viewer')">&times;</button>
                     <img id="full-img" class="viewer-img" src="" alt="">
@@ -92,7 +96,7 @@
     <script>
         const rosmeryData = { 
             name: "Rosmery Marcelo Vazques", 
-            text: "Gracias por ser nuestra guía, nuestro refugio y nuestra mejor amiga. Eres el corazón de esta familia. ¡Te amamos!",
+            text: "Mamá, gracias por ser nuestro pilar incondicional, por cada sacrificio y por el amor infinito que nos regalas cada día. Eres el corazón que mantiene unida a esta familia y nuestra mayor inspiración. Hoy celebramos tu vida, tu fuerza y tu dulzura. ¡Te amamos con todo el corazón, Rosmery!",
             img: "./assets/mother_appreciation_1_1777992656437.png",
             portrait: "./assets/principal.jpg",
             gallery: [
@@ -125,6 +129,7 @@
             const albumGrid = document.getElementById('album-grid');
             const portraitImg = document.getElementById('card-portrait');
             const portraitHolder = document.getElementById('portrait-holder');
+            const cardText = document.getElementById('card-text');
 
             const imageViewer = document.getElementById('image-viewer');
             const fullImg = document.getElementById('full-img');
@@ -133,6 +138,7 @@
             function showRosmery() {
                 modalBg.style.backgroundImage = `url('${rosmeryData.img}')`;
                 portraitImg.src = rosmeryData.portrait + '?t=' + new Date().getTime();
+                cardText.textContent = rosmeryData.text; // Cargar texto largo
                 portraitHolder.style.display = 'block';
                 personalCard.style.display = 'flex';
                 setTimeout(() => personalCard.classList.add('active'), 10);
