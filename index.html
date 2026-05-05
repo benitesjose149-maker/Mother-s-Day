@@ -39,8 +39,7 @@
 
                 <div class="search-section">
                     <div class="search-bar">
-                        <input type="text" id="mother-search" placeholder="Escribe 'Rosmery' o 'Mamá' aquí..."
-                            autocomplete="off">
+                        <input type="text" id="mother-search" placeholder="Escribe 'Rosmery' o 'Mamá' aquí..." autocomplete="off">
                         <button class="gold-btn">REVELAR</button>
                     </div>
                     <div id="suggestions" class="suggestions"></div>
@@ -53,21 +52,30 @@
                     <div class="reveal-bg"></div>
                     <div class="reveal-content">
                         <button id="close-card" class="close-btn">&times;</button>
-
+                        
                         <div id="portrait-holder" class="portrait-frame" style="display: block !important;">
-                            <img id="card-portrait" src="./assets/principal.jpg" alt="Rosmery" class="portrait-img">
+                            <img id="card-portrait" src="./assets/principal2.jpg" alt="Rosmery" class="portrait-img">
                         </div>
 
                         <h2 id="card-name">Querida Rosmery</h2>
-                        <!-- CUERPO DEL MENSAJE -->
-                        <p id="card-text"
-                            style="font-size: 1.1rem; line-height: 1.5; max-width: 600px; margin-bottom: 10px;"></p>
-                        <!-- FIRMA PERSONALIZADA -->
-                        <p id="card-signature"
-                            style="font-style: italic; color: #8a704d; font-weight: 600; margin-bottom: 20px;"></p>
-
-                        <button id="view-album-btn" class="album-btn">VER ÁLBUM FAMILIAR</button>
+                        <p id="card-text" style="font-size: 1.1rem; line-height: 1.5; max-width: 600px; margin-bottom: 10px;"></p>
+                        <p id="card-signature" style="font-style: italic; color: #8a704d; font-weight: 600; margin-bottom: 20px;"></p>
+                        
+                        <!-- BOTONES DE ACCIÓN -->
+                        <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                            <button id="view-video-btn" class="video-btn">🎬 VER VIDEO ESPECIAL</button>
+                            <button id="view-album-btn" class="album-btn">VER ÁLBUM FAMILIAR</button>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Modal: Reproductor de Video -->
+                <div id="video-modal" class="viewer-modal">
+                    <button class="viewer-close" onclick="stopVideo()">&times;</button>
+                    <video id="video-player" controls>
+                        <source src="./assets/video_especial.mp4" type="video/mp4">
+                        Tu navegador no soporta videos.
+                    </video>
                 </div>
 
                 <!-- Modal: Álbum de Fotos -->
@@ -91,8 +99,7 @@
                     <div class="reveal-content">
                         <button class="close-btn" onclick="closeModal('family-modal')">&times;</button>
                         <h2>Nuestra Familia</h2>
-                        <p>Esta web es un regalo de todos nosotros para la persona más especial. <br><br> Rosmery,
-                            gracias por darnos tanto amor cada día. <br> ¡Eres nuestra mayor inspiración!</p>
+                        <p>Esta web es un regalo de todos nosotros para la persona más especial. <br><br> Rosmery, gracias por darnos tanto amor cada día. <br> ¡Eres nuestra mayor inspiración!</p>
                     </div>
                 </div>
             </main>
@@ -100,12 +107,12 @@
     </div>
 
     <script>
-        const rosmeryData = {
-            name: "Rosmery Marcelo Vazques",
+        const rosmeryData = { 
+            name: "Rosmery Marcelo Vazques", 
             text: "Mamá, gracias por ser nuestro pilar incondicional, por cada sacrificio y por el amor infinito que nos regalas cada día. Eres el corazón que mantiene unida a esta familia y nuestra mayor inspiración. Hoy celebramos tu vida, tu fuerza y tu dulzura. ¡Te amamos con todo el corazón, Rosmery!",
             signature: "Atte: Tus hijos, pero más Anthony (las demás no hicieron nada)",
             img: "./assets/mother_appreciation_1_1777992656437.png",
-            portrait: "./assets/principal.jpg",
+            portrait: "./assets/principal2.jpg",
             gallery: [
                 { src: "./assets/madre1.jpg", caption: "Nuestro primer gran recuerdo juntos." },
                 { src: "./assets/madre2.jpg", caption: "Celebrando la vida en familia." },
@@ -124,6 +131,14 @@
             setTimeout(() => m.style.display = 'none', 500);
         }
 
+        function stopVideo() {
+            const videoModal = document.getElementById('video-modal');
+            const video = document.getElementById('video-player');
+            video.pause();
+            video.currentTime = 0;
+            closeModal('video-modal');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const searchInput = document.getElementById('mother-search');
             const searchBtn = document.querySelector('.gold-btn');
@@ -132,12 +147,15 @@
             const modalBg = document.querySelector('.reveal-bg');
             const closeCardBtn = document.getElementById('close-card');
             const viewAlbumBtn = document.getElementById('view-album-btn');
+            const viewVideoBtn = document.getElementById('view-video-btn');
             const albumModal = document.getElementById('album-modal');
             const albumGrid = document.getElementById('album-grid');
             const portraitImg = document.getElementById('card-portrait');
             const portraitHolder = document.getElementById('portrait-holder');
             const cardText = document.getElementById('card-text');
             const cardSignature = document.getElementById('card-signature');
+
+            const videoModal = document.getElementById('video-modal');
 
             const imageViewer = document.getElementById('image-viewer');
             const fullImg = document.getElementById('full-img');
@@ -146,17 +164,19 @@
             function showRosmery() {
                 modalBg.style.backgroundImage = `url('${rosmeryData.img}')`;
                 portraitImg.src = rosmeryData.portrait + '?t=' + new Date().getTime();
-
-                // ASIGNAR TEXTOS DESDE LOS DATOS
                 cardText.textContent = rosmeryData.text;
                 cardSignature.textContent = rosmeryData.signature;
-
                 portraitHolder.style.display = 'block';
                 personalCard.style.display = 'flex';
                 setTimeout(() => personalCard.classList.add('active'), 10);
                 suggestionsBox.style.display = 'none';
                 searchInput.value = '';
             }
+
+            viewVideoBtn.onclick = () => {
+                videoModal.style.display = 'flex';
+                setTimeout(() => videoModal.classList.add('active'), 10);
+            };
 
             function openViewer(imgData) {
                 fullImg.src = imgData.src;
@@ -174,7 +194,7 @@
                     img.onclick = () => openViewer(item);
                     img.onerror = () => img.style.display = 'none';
                     albumGrid.appendChild(img);
-                    setTimeout(() => { img.classList.add('animate'); }, 100 * (index + 1));
+                    setTimeout(() => { img.classList.add('animate'); }, 100 * (index + 1)); 
                 });
                 albumModal.style.display = 'flex';
                 setTimeout(() => albumModal.classList.add('active'), 10);
