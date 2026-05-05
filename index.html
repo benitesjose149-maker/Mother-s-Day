@@ -39,8 +39,7 @@
 
                 <div class="search-section">
                     <div class="search-bar">
-                        <input type="text" id="mother-search" placeholder="Escribe 'Rosmery' o 'Mamá' aquí..."
-                            autocomplete="off">
+                        <input type="text" id="mother-search" placeholder="Escribe 'Rosmery' o 'Mamá' aquí..." autocomplete="off">
                         <button class="gold-btn">REVELAR</button>
                     </div>
                     <div id="suggestions" class="suggestions"></div>
@@ -48,21 +47,24 @@
 
                 <p class="tagline">Una colección de momentos que atesoramos para siempre.</p>
 
-                <!-- Reveal Card (Dedicada) -->
+                <!-- REVEAL CARD CORREGIDA -->
                 <div id="personal-card" class="reveal-overlay">
                     <div class="reveal-bg"></div>
                     <div class="reveal-content">
                         <button id="close-card" class="close-btn">&times;</button>
-                        <div id="portrait-holder" class="portrait-frame">
+                        
+                        <!-- MARCO DEL RETRATO (Asegurado visible) -->
+                        <div id="portrait-holder" class="portrait-frame" style="display: block !important;">
                             <img id="card-portrait" src="./assets/principal.jpg" alt="Rosmery" class="portrait-img">
                         </div>
+
                         <h2 id="card-name">Querida Rosmery</h2>
-                        <p id="card-text">Gracias por ser nuestra guía, nuestro refugio y nuestra mejor amiga. Eres el
-                            corazón de esta familia. ¡Te amamos!</p>
+                        <p id="card-text">Gracias por ser nuestra guía, nuestro refugio y nuestra mejor amiga. Eres el corazón de esta familia. ¡Te amamos!</p>
                         <button id="view-album-btn" class="album-btn">VER ÁLBUM FAMILIAR</button>
                     </div>
                 </div>
 
+                <!-- Modal: Álbum de Fotos -->
                 <div id="album-modal" class="reveal-overlay">
                     <div class="reveal-content">
                         <button class="close-btn" onclick="closeModal('album-modal')">&times;</button>
@@ -76,8 +78,7 @@
                     <div class="reveal-content">
                         <button class="close-btn" onclick="closeModal('family-modal')">&times;</button>
                         <h2>Nuestra Familia</h2>
-                        <p>Esta web es un regalo de todos nosotros para la persona más especial. <br><br> Rosmery,
-                            gracias por darnos tanto amor cada día. <br> ¡Eres nuestra mayor inspiración!</p>
+                        <p>Esta web es un regalo de todos nosotros para la persona más especial. <br><br> Rosmery, gracias por darnos tanto amor cada día. <br> ¡Eres nuestra mayor inspiración!</p>
                     </div>
                 </div>
             </main>
@@ -85,8 +86,8 @@
     </div>
 
     <script>
-        const rosmeryData = {
-            name: "Rosmery Marcelo Vazques",
+        const rosmeryData = { 
+            name: "Rosmery Marcelo Vazques", 
             text: "Gracias por ser nuestra guía, nuestro refugio y nuestra mejor amiga. Eres el corazón de esta familia. ¡Te amamos!",
             img: "./assets/mother_appreciation_1_1777992656437.png",
             portrait: "./assets/principal.jpg",
@@ -119,9 +120,14 @@
             const familyModal = document.getElementById('family-modal');
             const albumModal = document.getElementById('album-modal');
             const albumGrid = document.getElementById('album-grid');
+            const portraitImg = document.getElementById('card-portrait');
+            const portraitHolder = document.getElementById('portrait-holder');
 
             function showRosmery() {
                 modalBg.style.backgroundImage = `url('${rosmeryData.img}')`;
+                portraitImg.src = rosmeryData.portrait + '?t=' + new Date().getTime(); // Evitar cache
+                portraitHolder.style.display = 'block';
+                
                 personalCard.style.display = 'flex';
                 setTimeout(() => personalCard.classList.add('active'), 10);
                 suggestionsBox.style.display = 'none';
@@ -136,7 +142,7 @@
                     img.className = 'gallery-item';
                     img.onerror = () => img.style.display = 'none';
                     albumGrid.appendChild(img);
-                    setTimeout(() => { img.classList.add('animate'); }, 100 * (index + 1));
+                    setTimeout(() => { img.classList.add('animate'); }, 100 * (index + 1)); 
                 });
                 albumModal.style.display = 'flex';
                 setTimeout(() => albumModal.classList.add('active'), 10);
