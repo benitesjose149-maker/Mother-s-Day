@@ -61,9 +61,9 @@
                     </div>
                 </div>
 
-                <!-- Modal: Álbum de Fotos -->
+                <!-- Modal: Álbum de Fotos (Animado y Full-Screen) -->
                 <div id="album-modal" class="reveal-overlay">
-                    <div class="reveal-content" style="max-width: 900px;">
+                    <div class="reveal-content">
                         <button class="close-btn" onclick="closeModal('album-modal')">&times;</button>
                         <h2>Álbum de Recuerdos</h2>
                         <div id="album-grid" class="gallery-grid"></div>
@@ -126,16 +126,20 @@
                 searchInput.value = '';
             }
 
-            // Lógica del Álbum
+            // Lógica del Álbum con Animación Escalonada
             viewAlbumBtn.onclick = () => {
                 albumGrid.innerHTML = '';
-                rosmeryData.gallery.forEach(imgSrc => {
+                rosmeryData.gallery.forEach((imgSrc, index) => {
                     const img = document.createElement('img');
                     img.src = imgSrc;
                     img.className = 'gallery-item';
-                    // Fallback para imágenes que no existen aún
                     img.onerror = () => img.style.display = 'none';
                     albumGrid.appendChild(img);
+                    
+                    // Animación escalonada
+                    setTimeout(() => {
+                        img.classList.add('animate');
+                    }, 100 * (index + 1)); 
                 });
                 albumModal.style.display = 'flex';
                 setTimeout(() => albumModal.classList.add('active'), 10);
@@ -153,7 +157,6 @@
                 if (value.includes("rosmery") || value.includes("mama") || value.includes("mamá")) {
                     showRosmery();
                 } else if (value !== "") {
-                    // Si escribe cualquier otra cosa, también le mostramos a Rosmery por ser especial
                     showRosmery();
                 }
             }
@@ -162,7 +165,6 @@
             searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
             closeCardBtn.onclick = () => closeModal('personal-card');
 
-            // Sugerencia rápida
             searchInput.addEventListener('input', (e) => {
                 const value = e.target.value.toLowerCase();
                 if (value.length > 0) {
