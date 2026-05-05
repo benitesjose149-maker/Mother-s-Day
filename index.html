@@ -39,7 +39,8 @@
 
                 <div class="search-section">
                     <div class="search-bar">
-                        <input type="text" id="mother-search" placeholder="Escribe 'Rosmery' o 'Mamá' aquí..." autocomplete="off">
+                        <input type="text" id="mother-search" placeholder="Escribe 'Rosmery' o 'Mamá' aquí..."
+                            autocomplete="off">
                         <button class="gold-btn">REVELAR</button>
                     </div>
                     <div id="suggestions" class="suggestions"></div>
@@ -53,15 +54,15 @@
                     <div class="reveal-content">
                         <button id="close-card" class="close-btn">&times;</button>
                         <div id="portrait-holder" class="portrait-frame">
-                            <img id="card-portrait" src="./assets/madre.jpg" alt="Rosmery" class="portrait-img">
+                            <img id="card-portrait" src="./assets/principal.jpg" alt="Rosmery" class="portrait-img">
                         </div>
                         <h2 id="card-name">Querida Rosmery</h2>
-                        <p id="card-text">Gracias por ser nuestra guía, nuestro refugio y nuestra mejor amiga. Eres el corazón de esta familia. ¡Te amamos!</p>
+                        <p id="card-text">Gracias por ser nuestra guía, nuestro refugio y nuestra mejor amiga. Eres el
+                            corazón de esta familia. ¡Te amamos!</p>
                         <button id="view-album-btn" class="album-btn">VER ÁLBUM FAMILIAR</button>
                     </div>
                 </div>
 
-                <!-- Modal: Álbum de Fotos (Animado y Full-Screen) -->
                 <div id="album-modal" class="reveal-overlay">
                     <div class="reveal-content">
                         <button class="close-btn" onclick="closeModal('album-modal')">&times;</button>
@@ -75,7 +76,8 @@
                     <div class="reveal-content">
                         <button class="close-btn" onclick="closeModal('family-modal')">&times;</button>
                         <h2>Nuestra Familia</h2>
-                        <p>Esta web es un regalo de todos nosotros para la persona más especial. <br><br> Rosmery, gracias por darnos tanto amor cada día. <br> ¡Eres nuestra mayor inspiración!</p>
+                        <p>Esta web es un regalo de todos nosotros para la persona más especial. <br><br> Rosmery,
+                            gracias por darnos tanto amor cada día. <br> ¡Eres nuestra mayor inspiración!</p>
                     </div>
                 </div>
             </main>
@@ -83,11 +85,11 @@
     </div>
 
     <script>
-        const rosmeryData = { 
-            name: "Rosmery Marcelo Vazques", 
+        const rosmeryData = {
+            name: "Rosmery Marcelo Vazques",
             text: "Gracias por ser nuestra guía, nuestro refugio y nuestra mejor amiga. Eres el corazón de esta familia. ¡Te amamos!",
             img: "./assets/mother_appreciation_1_1777992656437.png",
-            portrait: "./assets/madre.jpg",
+            portrait: "./assets/principal.jpg",
             gallery: [
                 "./assets/madre1.jpg",
                 "./assets/madre2.jpg",
@@ -126,7 +128,6 @@
                 searchInput.value = '';
             }
 
-            // Lógica del Álbum con Animación Escalonada
             viewAlbumBtn.onclick = () => {
                 albumGrid.innerHTML = '';
                 rosmeryData.gallery.forEach((imgSrc, index) => {
@@ -135,17 +136,12 @@
                     img.className = 'gallery-item';
                     img.onerror = () => img.style.display = 'none';
                     albumGrid.appendChild(img);
-                    
-                    // Animación escalonada
-                    setTimeout(() => {
-                        img.classList.add('animate');
-                    }, 100 * (index + 1)); 
+                    setTimeout(() => { img.classList.add('animate'); }, 100 * (index + 1));
                 });
                 albumModal.style.display = 'flex';
                 setTimeout(() => albumModal.classList.add('active'), 10);
             };
 
-            // Menú
             document.getElementById('nav-family').onclick = (e) => {
                 e.preventDefault();
                 familyModal.style.display = 'flex';
