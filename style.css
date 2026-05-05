@@ -228,18 +228,42 @@ body {
     background: #fdfaf5; color: var(--gold-solid); padding-left: 30px;
 }
 
-/* BOTÓN DE VIDEO */
+/* BOTONES DE ACCIÓN */
+.video-btn, .album-btn {
+    width: 280px; /* Ancho fijo para que se vean iguales */
+    padding: 14px 25px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
 .video-btn {
-    margin-top: 10px;
     background: #c5a059; border: none;
-    color: white; padding: 12px 30px; border-radius: 50px;
-    font-size: 0.9rem; letter-spacing: 1px; cursor: pointer;
-    transition: all 0.3s; font-weight: 700;
+    color: white;
     box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
     animation: pulse 2s infinite;
 }
-.video-btn:hover {
-    background: #b38f4d; transform: scale(1.05);
+.video-btn:hover { background: #b38f4d; transform: translateY(-3px); }
+
+.album-btn {
+    background: white; 
+    border: 2px solid var(--gold-solid);
+    color: var(--gold-solid);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.album-btn:hover {
+    background: var(--gold-gradient);
+    color: #43300e;
+    border-color: transparent;
+    transform: translateY(-3px);
 }
 
 @keyframes pulse {
@@ -250,9 +274,11 @@ body {
 
 /* MODAL DE VIDEO */
 #video-player {
-    width: 90%; max-width: 800px;
-    border-radius: 20px; border: 4px solid white;
-    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    width: 100%; height: auto;
+    max-height: 80vh;
+    border-radius: 15px;
+    background: #000;
+    outline: none;
 }
 
 /* ÁLBUM FULL-SCREEN */

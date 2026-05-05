@@ -59,23 +59,25 @@
 
                         <h2 id="card-name">Querida Rosmery</h2>
                         <p id="card-text" style="font-size: 1.1rem; line-height: 1.5; max-width: 600px; margin-bottom: 10px;"></p>
-                        <p id="card-signature" style="font-style: italic; color: #8a704d; font-weight: 600; margin-bottom: 20px;"></p>
+                        <p id="card-signature" style="font-style: italic; color: #8a704d; font-weight: 600; margin-bottom: 25px;"></p>
                         
-                        <!-- BOTONES DE ACCIÓN -->
-                        <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                        <!-- BOTONES DE ACCIÓN (ESTILO CORREGIDO) -->
+                        <div style="display: flex; flex-direction: column; gap: 15px; align-items: center; width: 100%;">
                             <button id="view-video-btn" class="video-btn">🎬 VER VIDEO ESPECIAL</button>
-                            <button id="view-album-btn" class="album-btn">VER ÁLBUM FAMILIAR</button>
+                            <button id="view-album-btn" class="album-btn">🖼️ VER ÁLBUM FAMILIAR</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Modal: Reproductor de Video -->
+                <!-- Modal: Reproductor de Video (CONTROLES ASEGURADOS) -->
                 <div id="video-modal" class="viewer-modal">
                     <button class="viewer-close" onclick="stopVideo()">&times;</button>
-                    <video id="video-player" controls>
-                        <source src="./assets/video_especial.mp4" type="video/mp4">
-                        Tu navegador no soporta videos.
-                    </video>
+                    <div style="width: 90%; max-width: 800px; position: relative;">
+                        <video id="video-player" controls playsinline webkit-playsinline>
+                            <source src="./assets/video_especial.mp4" type="video/mp4">
+                            Tu navegador no soporta videos.
+                        </video>
+                    </div>
                 </div>
 
                 <!-- Modal: Álbum de Fotos -->
@@ -156,10 +158,7 @@
             const cardSignature = document.getElementById('card-signature');
 
             const videoModal = document.getElementById('video-modal');
-
-            const imageViewer = document.getElementById('image-viewer');
-            const fullImg = document.getElementById('full-img');
-            const viewerText = document.getElementById('viewer-text');
+            const videoPlayer = document.getElementById('video-player');
 
             function showRosmery() {
                 modalBg.style.backgroundImage = `url('${rosmeryData.img}')`;
@@ -176,9 +175,14 @@
             viewVideoBtn.onclick = () => {
                 videoModal.style.display = 'flex';
                 setTimeout(() => videoModal.classList.add('active'), 10);
+                // Intentar poner foco en el video para mostrar controles
+                videoPlayer.focus();
             };
 
             function openViewer(imgData) {
+                const imageViewer = document.getElementById('image-viewer');
+                const fullImg = document.getElementById('full-img');
+                const viewerText = document.getElementById('viewer-text');
                 fullImg.src = imgData.src;
                 viewerText.textContent = imgData.caption;
                 imageViewer.style.display = 'flex';
