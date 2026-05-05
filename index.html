@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mother's Day Collection | MAISON de MAMAN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+        <div class="gold-slant"></div>
+
+        <div class="main-card">
+            <div class="top-pink-bar"></div>
+
+            <!-- Flores -->
+            <img src="./assets/flowers_white_bg_1777989859256.png" class="card-flower top-left" alt="">
+            <img src="./assets/flowers_white_bg_1777989859256.png" class="card-flower bottom-right" alt="">
+
+            <!-- Objetos Decorativos -->
+            <img src="./assets/candle_necklace_clean_1777990471501.png" class="extra-decor candle" alt="">
+            <img src="./assets/candle_necklace_clean_1777990471501.png" class="extra-decor necklace" alt="">
+
+            <nav class="navbar">
+                <div class="logo">
+                    <span class="logo-main">MAISON <span class="cursive-de">de</span> MAMAN</span>
+                    <span class="logo-sub">MOTHER'S DAY COLLECTION</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#" id="nav-family">Nuestra Familia</a>
+                    <a href="#" id="nav-list">Lista de Nombres</a>
+                    <span class="nav-icons">
+                        <a href="#" class="account-link">❤️</a>
+                    </span>
+                </div>
+            </nav>
+
+            <main class="content">
+                <h2 class="cursive-text">Para ti, Mamá</h2>
+                <h1 class="main-title">The Mother's Day Collection</h1>
+
+                <div class="search-section">
+                    <div class="search-bar">
+                        <input type="text" id="mother-search" placeholder="Escribe el nombre de mamá aquí..." autocomplete="off">
+                        <button class="gold-btn">REVELAR</button>
+                    </div>
+                    <div id="suggestions" class="suggestions"></div>
+                </div>
+
+                <p class="tagline">Exquisite gifts curated for the women we love.</p>
+
+                <!-- Reveal Card (Personalizada) -->
+                <div id="personal-card" class="reveal-overlay">
+                    <div class="reveal-bg"></div>
+                    <div class="reveal-content">
+                        <button id="close-card" class="close-btn">&times;</button>
+                        <div id="portrait-holder" class="portrait-frame">
+                            <img id="card-portrait" src="" alt="Retrato" class="portrait-img">
+                        </div>
+                        <h2 id="card-name"></h2>
+                        <p id="card-text"></p>
+                    </div>
+                </div>
+
+                <!-- Modal: Nuestra Familia -->
+                <div id="family-modal" class="reveal-overlay">
+                    <div class="reveal-content">
+                        <button class="close-btn" onclick="closeModal('family-modal')">&times;</button>
+                        <h2>Nuestra Familia</h2>
+                        <p>Esta colección ha sido creada con amor por todos nosotros. <br><br> Para cada madre, abuela, tía y hermana que llena nuestras vidas de luz. <br> ¡Gracias por ser nuestra inspiración diaria!</p>
+                    </div>
+                </div>
+
+                <!-- Modal: Lista de Nombres -->
+                <div id="list-modal" class="reveal-overlay">
+                    <div class="reveal-content">
+                        <button class="close-btn" onclick="closeModal('list-modal')">&times;</button>
+                        <h2>Colección 2026</h2>
+                        <p>Busca estos nombres para ver sus mensajes:</p>
+                        <div id="names-list-container" style="margin-top:20px; display:flex; flex-wrap:wrap; justify-content:center; gap:10px;"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const mothersData = [
+            { 
+                id: 1, 
+                name: "Rosmery Marcelo Vazques", 
+                text: "Gracias por ser mi guía, mi refugio y mi mejor amiga. ¡Feliz día, te amo!",
+                img: "./assets/mother_appreciation_1_1777992656437.png",
+                portrait: "./assets/madre.jpg"
+            },
+            { 
+                id: 2, name: "Abuela", 
+                text: "Tus historias y tu amor son el tesoro más grande de nuestra familia. ¡Felicidades!",
+                img: "./assets/watercolor_flowers_corner_1777989271995.png"
+            },
+            { 
+                id: 3, name: "María", 
+                text: "Tu fuerza y dulzura inspiran a todos los que te rodean. Disfruta de tu día especial.",
+                img: "./assets/flowers_white_bg_1777989859256.png"
+            },
+            { 
+                id: 4, name: "Rosa", 
+                text: "Como una flor, tu presencia llena de color y alegría nuestras vidas. ¡Te queremos!",
+                img: "./assets/candle_necklace_clean_1777990471501.png"
+            }
+        ];
+
+        function closeModal(id) {
+            const m = document.getElementById(id);
+            m.classList.remove('active');
+            setTimeout(() => m.style.display = 'none', 500);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('mother-search');
+            const searchBtn = document.querySelector('.gold-btn');
+            const suggestionsBox = document.getElementById('suggestions');
+            const personalCard = document.getElementById('personal-card');
+            const modalBg = document.querySelector('.reveal-bg');
+            const closeCardBtn = document.getElementById('close-card');
+            const cardName = document.getElementById('card-name');
+            const cardText = document.getElementById('card-text');
+            const portraitHolder = document.getElementById('portrait-holder');
+            const portraitImg = document.getElementById('card-portrait');
+
+            const familyModal = document.getElementById('family-modal');
+            const listModal = document.getElementById('list-modal');
+            const namesContainer = document.getElementById('names-list-container');
+
+            // Cargar lista de nombres
+            mothersData.forEach(m => {
+                const span = document.createElement('span');
+                span.style.cssText = "background:#fdfaf5; padding:5px 15px; border-radius:20px; font-size:0.8rem; cursor:pointer; border:1px solid #eee;";
+                span.textContent = m.name;
+                span.onclick = () => { closeModal('list-modal'); selectMother(m); };
+                namesContainer.appendChild(span);
+            });
+
+            function selectMother(mother) {
+                cardName.textContent = `Querida ${mother.name}`;
+                cardText.textContent = mother.text;
+                if (mother.img) modalBg.style.backgroundImage = `url('${mother.img}')`;
+                if (mother.portrait) {
+                    portraitImg.src = mother.portrait;
+                    portraitHolder.style.display = 'block';
+                } else { portraitHolder.style.display = 'none'; }
+                personalCard.style.display = 'flex';
+                setTimeout(() => personalCard.classList.add('active'), 10);
+                suggestionsBox.style.display = 'none';
+                searchInput.value = '';
+            }
+
+            function performSearch() {
+                const value = searchInput.value.trim().toLowerCase();
+                if (value === "") return;
+                
+                // Búsqueda inteligente (encuentra por nombre completo o primer nombre)
+                const found = mothersData.find(m => 
+                    m.name.toLowerCase() === value || 
+                    m.name.toLowerCase().startsWith(value)
+                );
+                
+                if (found) selectMother(found);
+                else selectMother({ name: searchInput.value, text: "Hoy celebramos tu luz y todo el amor que das al mundo. ¡Feliz Día de la Madre!" });
+            }
+
+            searchInput.addEventListener('input', (e) => {
+                const value = e.target.value.toLowerCase().trim();
+                suggestionsBox.innerHTML = '';
+                if (value.length > 0) {
+                    const matches = mothersData.filter(m => m.name.toLowerCase().includes(value));
+                    if (matches.length > 0) {
+                        suggestionsBox.style.display = 'block';
+                        matches.forEach(match => {
+                            const div = document.createElement('div');
+                            div.className = 'suggestion-item';
+                            div.textContent = match.name;
+                            div.onclick = () => selectMother(match);
+                            suggestionsBox.appendChild(div);
+                        });
+                    } else { suggestionsBox.style.display = 'none'; }
+                } else { suggestionsBox.style.display = 'none'; }
+            });
+
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
+            closeCardBtn.onclick = () => closeModal('personal-card');
+
+            document.addEventListener('click', (e) => {
+                if (searchInput && suggestionsBox && !searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
+                    suggestionsBox.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
