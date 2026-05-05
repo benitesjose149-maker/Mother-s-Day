@@ -61,15 +61,26 @@
                         <p id="card-text" style="font-size: 1.1rem; line-height: 1.5; max-width: 600px; margin-bottom: 10px;"></p>
                         <p id="card-signature" style="font-style: italic; color: #8a704d; font-weight: 600; margin-bottom: 25px;"></p>
                         
-                        <!-- BOTONES DE ACCIÓN (ESTILO CORREGIDO) -->
-                        <div style="display: flex; flex-direction: column; gap: 15px; align-items: center; width: 100%;">
+                        <!-- BOTONES DE ACCIÓN -->
+                        <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%;">
                             <button id="view-video-btn" class="video-btn">🎬 VER VIDEO ESPECIAL</button>
+                            <button id="view-nieta-btn" class="nieta-btn">👶 NOTA DE TU NIETA</button>
                             <button id="view-album-btn" class="album-btn">🖼️ VER ÁLBUM FAMILIAR</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Modal: Reproductor de Video (CONTROLES ASEGURADOS) -->
+                <!-- Modal: Nota de la Nieta -->
+                <div id="nieta-modal" class="reveal-overlay">
+                    <div class="reveal-content" style="background: #fff0f5; border: 2px dashed #f8bbd0;">
+                        <button class="close-btn" onclick="closeModal('nieta-modal')">&times;</button>
+                        <h2 style="font-family: 'Dancing Script', cursive; color: #880e4f; font-size: 2.5rem;">Para mi Abuelita</h2>
+                        <p id="nieta-message" style="font-size: 1.3rem; color: #ad1457; line-height: 1.6; font-style: italic;"></p>
+                        <div style="font-size: 3rem; margin-top: 15px;">🍼🧸</div>
+                    </div>
+                </div>
+
+                <!-- Modal: Reproductor de Video -->
                 <div id="video-modal" class="viewer-modal">
                     <button class="viewer-close" onclick="stopVideo()">&times;</button>
                     <div style="width: 90%; max-width: 800px; position: relative;">
@@ -113,6 +124,7 @@
             name: "Rosmery Marcelo Vazques", 
             text: "Mamá, gracias por ser nuestro pilar incondicional, por cada sacrificio y por el amor infinito que nos regalas cada día. Eres el corazón que mantiene unida a esta familia y nuestra mayor inspiración. Hoy celebramos tu vida, tu fuerza y tu dulzura. ¡Te amamos con todo el corazón, Rosmery!",
             signature: "Atte: Tus hijos, pero más Anthony (las demás no hicieron nada)",
+            nietaMessage: "Abuelita Rosmery, acabo de llegar al mundo y ya tengo el regalo más grande: tenerte a mi lado. Prometo crecer rápido para jugar juntas y darte muchos besos. ¡Feliz día!",
             img: "./assets/mother_appreciation_1_1777992656437.png",
             portrait: "./assets/principal2.jpg",
             gallery: [
@@ -150,6 +162,11 @@
             const closeCardBtn = document.getElementById('close-card');
             const viewAlbumBtn = document.getElementById('view-album-btn');
             const viewVideoBtn = document.getElementById('view-video-btn');
+            const viewNietaBtn = document.getElementById('view-nieta-btn');
+            
+            const nietaModal = document.getElementById('nieta-modal');
+            const nietaMessage = document.getElementById('nieta-message');
+
             const albumModal = document.getElementById('album-modal');
             const albumGrid = document.getElementById('album-grid');
             const portraitImg = document.getElementById('card-portrait');
@@ -158,13 +175,13 @@
             const cardSignature = document.getElementById('card-signature');
 
             const videoModal = document.getElementById('video-modal');
-            const videoPlayer = document.getElementById('video-player');
 
             function showRosmery() {
                 modalBg.style.backgroundImage = `url('${rosmeryData.img}')`;
                 portraitImg.src = rosmeryData.portrait + '?t=' + new Date().getTime();
                 cardText.textContent = rosmeryData.text;
                 cardSignature.textContent = rosmeryData.signature;
+                nietaMessage.textContent = rosmeryData.nietaMessage;
                 portraitHolder.style.display = 'block';
                 personalCard.style.display = 'flex';
                 setTimeout(() => personalCard.classList.add('active'), 10);
@@ -172,11 +189,14 @@
                 searchInput.value = '';
             }
 
+            viewNietaBtn.onclick = () => {
+                nietaModal.style.display = 'flex';
+                setTimeout(() => nietaModal.classList.add('active'), 10);
+            };
+
             viewVideoBtn.onclick = () => {
                 videoModal.style.display = 'flex';
                 setTimeout(() => videoModal.classList.add('active'), 10);
-                // Intentar poner foco en el video para mostrar controles
-                videoPlayer.focus();
             };
 
             function openViewer(imgData) {

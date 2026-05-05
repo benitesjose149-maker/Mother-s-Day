@@ -253,6 +253,19 @@ body {
 }
 .video-btn:hover { background: #b38f4d; transform: translateY(-3px); }
 
+.nieta-btn {
+    background: #f8bbd0; border: none;
+    color: #880e4f;
+    box-shadow: 0 4px 15px rgba(248, 187, 208, 0.3);
+    animation: sway 3s infinite ease-in-out;
+}
+.nieta-btn:hover { background: #f48fb1; transform: translateY(-3px); }
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+}
+
 .album-btn {
     background: white; 
     border: 2px solid var(--gold-solid);
