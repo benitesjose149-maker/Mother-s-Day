@@ -64,30 +64,24 @@
                         <!-- BOTONES DE ACCIÓN -->
                         <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%;">
                             <button id="view-video-btn" class="video-btn">🎬 VER VIDEO ESPECIAL</button>
-                            <button id="view-nieta-btn" class="nieta-btn">👶 NOTA DE TU NIETA</button>
                             <button id="view-album-btn" class="album-btn">🖼️ VER ÁLBUM FAMILIAR</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Modal: Nota de la Nieta -->
-                <div id="nieta-modal" class="reveal-overlay">
-                    <div class="reveal-content" style="background: #fff0f5; border: 2px dashed #f8bbd0;">
-                        <button class="close-btn" onclick="closeModal('nieta-modal')">&times;</button>
-                        <h2 style="font-family: 'Dancing Script', cursive; color: #880e4f; font-size: 2.5rem;">Para mi Abuelita</h2>
-                        <p id="nieta-message" style="font-size: 1.3rem; color: #ad1457; line-height: 1.6; font-style: italic;"></p>
-                        <div style="font-size: 3rem; margin-top: 15px;">🍼🧸</div>
-                    </div>
-                </div>
-
-                <!-- Modal: Reproductor de Video -->
+                <!-- Modal: Reproductor de Video con Mensaje de Nieta -->
                 <div id="video-modal" class="viewer-modal">
                     <button class="viewer-close" onclick="stopVideo()">&times;</button>
-                    <div style="width: 90%; max-width: 800px; position: relative;">
-                        <video id="video-player" controls playsinline webkit-playsinline>
+                    <div style="width: 90%; max-width: 600px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+                        <video id="video-player" controls playsinline webkit-playsinline style="width: 100%; border-radius: 15px;">
                             <source src="./assets/video_especial.mp4" type="video/mp4">
                             Tu navegador no soporta videos.
                         </video>
+                        <!-- MENSAJE DE LA NIETA INTEGRADO -->
+                        <div class="nieta-video-note">
+                            <p id="nieta-video-text"></p>
+                            <span>🍼🧸</span>
+                        </div>
                     </div>
                 </div>
 
@@ -146,7 +140,6 @@
         }
 
         function stopVideo() {
-            const videoModal = document.getElementById('video-modal');
             const video = document.getElementById('video-player');
             video.pause();
             video.currentTime = 0;
@@ -162,11 +155,7 @@
             const closeCardBtn = document.getElementById('close-card');
             const viewAlbumBtn = document.getElementById('view-album-btn');
             const viewVideoBtn = document.getElementById('view-video-btn');
-            const viewNietaBtn = document.getElementById('view-nieta-btn');
             
-            const nietaModal = document.getElementById('nieta-modal');
-            const nietaMessage = document.getElementById('nieta-message');
-
             const albumModal = document.getElementById('album-modal');
             const albumGrid = document.getElementById('album-grid');
             const portraitImg = document.getElementById('card-portrait');
@@ -175,24 +164,20 @@
             const cardSignature = document.getElementById('card-signature');
 
             const videoModal = document.getElementById('video-modal');
+            const nietaVideoText = document.getElementById('nieta-video-text');
 
             function showRosmery() {
                 modalBg.style.backgroundImage = `url('${rosmeryData.img}')`;
                 portraitImg.src = rosmeryData.portrait + '?t=' + new Date().getTime();
                 cardText.textContent = rosmeryData.text;
                 cardSignature.textContent = rosmeryData.signature;
-                nietaMessage.textContent = rosmeryData.nietaMessage;
+                nietaVideoText.textContent = rosmeryData.nietaMessage;
                 portraitHolder.style.display = 'block';
                 personalCard.style.display = 'flex';
                 setTimeout(() => personalCard.classList.add('active'), 10);
                 suggestionsBox.style.display = 'none';
                 searchInput.value = '';
             }
-
-            viewNietaBtn.onclick = () => {
-                nietaModal.style.display = 'flex';
-                setTimeout(() => nietaModal.classList.add('active'), 10);
-            };
 
             viewVideoBtn.onclick = () => {
                 videoModal.style.display = 'flex';
