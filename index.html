@@ -158,16 +158,22 @@
                 searchInput.value = '';
             }
 
+            // ABRIR MODALES DESDE EL NAV (ARREGLADO)
+            document.getElementById('nav-family').onclick = (e) => {
+                e.preventDefault();
+                familyModal.style.display = 'flex';
+                setTimeout(() => familyModal.classList.add('active'), 10);
+            };
+            document.getElementById('nav-list').onclick = (e) => {
+                e.preventDefault();
+                listModal.style.display = 'flex';
+                setTimeout(() => listModal.classList.add('active'), 10);
+            };
+
             function performSearch() {
                 const value = searchInput.value.trim().toLowerCase();
                 if (value === "") return;
-                
-                // Búsqueda inteligente (encuentra por nombre completo o primer nombre)
-                const found = mothersData.find(m => 
-                    m.name.toLowerCase() === value || 
-                    m.name.toLowerCase().startsWith(value)
-                );
-                
+                const found = mothersData.find(m => m.name.toLowerCase() === value || m.name.toLowerCase().startsWith(value));
                 if (found) selectMother(found);
                 else selectMother({ name: searchInput.value, text: "Hoy celebramos tu luz y todo el amor que das al mundo. ¡Feliz Día de la Madre!" });
             }
