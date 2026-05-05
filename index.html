@@ -69,18 +69,21 @@
                     </div>
                 </div>
 
-                <!-- Modal: Reproductor de Video con Mensaje de Nieta -->
+                <!-- Modal: Reproductor de Video con Mensaje SUPERPUESTO -->
                 <div id="video-modal" class="viewer-modal">
                     <button class="viewer-close" onclick="stopVideo()">&times;</button>
-                    <div style="width: 90%; max-width: 600px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-                        <video id="video-player" controls playsinline webkit-playsinline style="width: 100%; border-radius: 15px;">
+                    
+                    <!-- CONTENEDOR RELATIVO PARA QUE EL TEXTO FLOTE DENTRO -->
+                    <div class="video-wrapper">
+                        <video id="video-player" controls playsinline webkit-playsinline>
                             <source src="./assets/video_especial.mp4" type="video/mp4">
                             Tu navegador no soporta videos.
                         </video>
-                        <!-- MENSAJE DE LA NIETA INTEGRADO -->
-                        <div class="nieta-video-note">
+                        
+                        <!-- MENSAJE FLOTANTE SOBRE EL VIDEO -->
+                        <div class="video-overlay-note">
                             <p id="nieta-video-text"></p>
-                            <span>🍼🧸</span>
+                            <div class="baby-icons">🍼🧸</div>
                         </div>
                     </div>
                 </div>
