@@ -283,8 +283,35 @@ body {
 
 /* Ajuste móvil */
 @media (max-width: 768px) {
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 10px; }
-    #album-modal .reveal-content { padding: 40px 15px; width: 100vw; height: 100vh; border-radius: 0; }
+    .navbar { padding: 15px; }
+    .logo-main { font-size: 1.2rem; }
+    .main-title { font-size: 2rem; }
+    .cursive-text { font-size: 1.5rem; }
+    
+    .reveal-content { 
+        width: 90%; 
+        max-height: 85vh; /* Altura máxima para permitir scroll */
+        overflow-y: auto; /* Activa la barra lateral si el texto sobra */
+        padding: 40px 20px;
+    }
+    
+    #card-text { font-size: 1rem !important; } /* Texto más pequeño en móvil */
+    #card-name { font-size: 1.8rem !important; }
+    
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px; }
+    
+    /* Visor en móvil */
+    .viewer-img { width: 95%; height: 50vh; }
+    .viewer-caption { font-size: 0.9rem; }
+}
+
+/* ESTILO DE LA BARRA DE SCROLL PARA EL MODAL */
+.reveal-content::-webkit-scrollbar {
+    width: 4px;
+}
+.reveal-content::-webkit-scrollbar-thumb {
+    background: var(--gold-solid);
+    border-radius: 10px;
 }
 
 /* VISOR DE FOTOS (LIGHTBOX) */
