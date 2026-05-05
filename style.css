@@ -299,10 +299,13 @@ body {
 .viewer-modal.active { opacity: 1; display: flex; }
 
 .viewer-img {
-    max-width: 90%; max-height: 75vh;
-    border-radius: 10px; border: 3px solid white;
+    width: 90%; max-width: 600px;
+    height: 70vh; /* Altura fija para forzar el recorte */
+    object-fit: cover; /* Esto 'recorta' los bordes negros automáticamente */
+    border-radius: 15px; border: 3px solid white;
     box-shadow: 0 0 50px rgba(0,0,0,0.5);
     transform: scale(0.9); transition: transform 0.4s;
+    background: #000; /* Fondo por si la imagen es muy pequeña */
 }
 .viewer-modal.active .viewer-img { transform: scale(1); }
 
