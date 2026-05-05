@@ -39,7 +39,8 @@
 
                 <div class="search-section">
                     <div class="search-bar">
-                        <input type="text" id="mother-search" placeholder="Escribe 'Rosmery' o 'Mamá' aquí..." autocomplete="off">
+                        <input type="text" id="mother-search" placeholder="Escribe 'Rosmery' o 'Mamá' aquí..."
+                            autocomplete="off">
                         <button class="gold-btn">REVELAR</button>
                     </div>
                     <div id="suggestions" class="suggestions"></div>
@@ -52,15 +53,19 @@
                     <div class="reveal-bg"></div>
                     <div class="reveal-content">
                         <button id="close-card" class="close-btn">&times;</button>
-                        
+
                         <div id="portrait-holder" class="portrait-frame" style="display: block !important;">
                             <img id="card-portrait" src="./assets/principal.jpg" alt="Rosmery" class="portrait-img">
                         </div>
 
                         <h2 id="card-name">Querida Rosmery</h2>
-                        <p id="card-text" style="font-size: 1.2rem; line-height: 1.6; max-width: 600px;">
-                            Mamá, gracias por ser nuestro pilar incondicional, por cada sacrificio y por el amor infinito que nos regalas cada día. Eres el corazón que mantiene unida a esta familia y nuestra mayor inspiración. Hoy celebramos tu vida, tu fuerza y tu dulzura. ¡Te amamos con todo el corazón, Rosmery!
-                        </p>
+                        <!-- CUERPO DEL MENSAJE -->
+                        <p id="card-text"
+                            style="font-size: 1.1rem; line-height: 1.5; max-width: 600px; margin-bottom: 10px;"></p>
+                        <!-- FIRMA PERSONALIZADA -->
+                        <p id="card-signature"
+                            style="font-style: italic; color: #8a704d; font-weight: 600; margin-bottom: 20px;"></p>
+
                         <button id="view-album-btn" class="album-btn">VER ÁLBUM FAMILIAR</button>
                     </div>
                 </div>
@@ -86,7 +91,8 @@
                     <div class="reveal-content">
                         <button class="close-btn" onclick="closeModal('family-modal')">&times;</button>
                         <h2>Nuestra Familia</h2>
-                        <p>Esta web es un regalo de todos nosotros para la persona más especial. <br><br> Rosmery, gracias por darnos tanto amor cada día. <br> ¡Eres nuestra mayor inspiración!</p>
+                        <p>Esta web es un regalo de todos nosotros para la persona más especial. <br><br> Rosmery,
+                            gracias por darnos tanto amor cada día. <br> ¡Eres nuestra mayor inspiración!</p>
                     </div>
                 </div>
             </main>
@@ -94,9 +100,10 @@
     </div>
 
     <script>
-        const rosmeryData = { 
-            name: "Rosmery Marcelo Vazques", 
+        const rosmeryData = {
+            name: "Rosmery Marcelo Vazques",
             text: "Mamá, gracias por ser nuestro pilar incondicional, por cada sacrificio y por el amor infinito que nos regalas cada día. Eres el corazón que mantiene unida a esta familia y nuestra mayor inspiración. Hoy celebramos tu vida, tu fuerza y tu dulzura. ¡Te amamos con todo el corazón, Rosmery!",
+            signature: "Atte: Tus hijos, pero más Anthony (las demás no hicieron nada)",
             img: "./assets/mother_appreciation_1_1777992656437.png",
             portrait: "./assets/principal.jpg",
             gallery: [
@@ -130,6 +137,7 @@
             const portraitImg = document.getElementById('card-portrait');
             const portraitHolder = document.getElementById('portrait-holder');
             const cardText = document.getElementById('card-text');
+            const cardSignature = document.getElementById('card-signature');
 
             const imageViewer = document.getElementById('image-viewer');
             const fullImg = document.getElementById('full-img');
@@ -138,7 +146,11 @@
             function showRosmery() {
                 modalBg.style.backgroundImage = `url('${rosmeryData.img}')`;
                 portraitImg.src = rosmeryData.portrait + '?t=' + new Date().getTime();
-                cardText.textContent = rosmeryData.text; // Cargar texto largo
+
+                // ASIGNAR TEXTOS DESDE LOS DATOS
+                cardText.textContent = rosmeryData.text;
+                cardSignature.textContent = rosmeryData.signature;
+
                 portraitHolder.style.display = 'block';
                 personalCard.style.display = 'flex';
                 setTimeout(() => personalCard.classList.add('active'), 10);
@@ -162,7 +174,7 @@
                     img.onclick = () => openViewer(item);
                     img.onerror = () => img.style.display = 'none';
                     albumGrid.appendChild(img);
-                    setTimeout(() => { img.classList.add('animate'); }, 100 * (index + 1)); 
+                    setTimeout(() => { img.classList.add('animate'); }, 100 * (index + 1));
                 });
                 albumModal.style.display = 'flex';
                 setTimeout(() => albumModal.classList.add('active'), 10);
