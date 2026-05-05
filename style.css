@@ -183,7 +183,7 @@ body {
 
 /* MARCO DEL RETRATO */
 .portrait-frame {
-    width: 180px; height: 180px;
+    width: 200px; height: 200px; /* Un poco más grande */
     border-radius: 50%;
     border: 4px solid #fff;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15), 0 0 0 2px var(--gold-solid);
@@ -194,6 +194,8 @@ body {
 .portrait-img {
     width: 100%; height: 100%;
     object-fit: cover;
+    object-position: center 20%; /* Enfoca el rostro en fotos de cuerpo completo */
+    transform: scale(1.1); /* Zoom ligero para ver mejor el rostro */
 }
 
 .reveal-content h2 { 
