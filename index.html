@@ -62,6 +62,16 @@
                         </div>
                         <h2 id="card-name"></h2>
                         <p id="card-text"></p>
+                        <button id="view-album-btn" class="album-btn">VER ÁLBUM FAMILIAR</button>
+                    </div>
+                </div>
+
+                <!-- Modal: Álbum de Fotos -->
+                <div id="album-modal" class="reveal-overlay">
+                    <div class="reveal-content" style="max-width: 900px;">
+                        <button class="close-btn" onclick="closeModal('album-modal')">&times;</button>
+                        <h2 id="album-title">Álbum de Fotos</h2>
+                        <div id="album-grid" class="gallery-grid"></div>
                     </div>
                 </div>
 
@@ -94,22 +104,31 @@
                 name: "Rosmery Marcelo Vazques", 
                 text: "Gracias por ser mi guía, mi refugio y mi mejor amiga. ¡Feliz día, te amo!",
                 img: "./assets/mother_appreciation_1_1777992656437.png",
-                portrait: "./assets/madre.jpg"
+                portrait: "./assets/madre.jpg",
+                gallery: [
+                    "./assets/mother_appreciation_1_1777992656437.png",
+                    "./assets/watercolor_flowers_corner_1777989271995.png",
+                    "./assets/flowers_white_bg_1777989859256.png",
+                    "./assets/candle_necklace_clean_1777990471501.png"
+                ] // Aquí pondrás los nombres de las 10-15 fotos reales
             },
             { 
                 id: 2, name: "Abuela", 
                 text: "Tus historias y tu amor son el tesoro más grande de nuestra familia. ¡Felicidades!",
-                img: "./assets/watercolor_flowers_corner_1777989271995.png"
+                img: "./assets/watercolor_flowers_corner_1777989271995.png",
+                gallery: []
             },
             { 
                 id: 3, name: "María", 
                 text: "Tu fuerza y dulzura inspiran a todos los que te rodean. Disfruta de tu día especial.",
-                img: "./assets/flowers_white_bg_1777989859256.png"
+                img: "./assets/flowers_white_bg_1777989859256.png",
+                gallery: []
             },
             { 
                 id: 4, name: "Rosa", 
                 text: "Como una flor, tu presencia llena de color y alegría nuestras vidas. ¡Te queremos!",
-                img: "./assets/candle_necklace_clean_1777990471501.png"
+                img: "./assets/candle_necklace_clean_1777990471501.png",
+                gallery: []
             }
         ];
 
@@ -130,10 +149,16 @@
             const cardText = document.getElementById('card-text');
             const portraitHolder = document.getElementById('portrait-holder');
             const portraitImg = document.getElementById('card-portrait');
+            const viewAlbumBtn = document.getElementById('view-album-btn');
 
             const familyModal = document.getElementById('family-modal');
             const listModal = document.getElementById('list-modal');
+            const albumModal = document.getElementById('album-modal');
+            const albumGrid = document.getElementById('album-grid');
+            const albumTitle = document.getElementById('album-title');
             const namesContainer = document.getElementById('names-list-container');
+
+            let currentMother = null;
 
             // Cargar lista de nombres
             mothersData.forEach(m => {
@@ -145,6 +170,7 @@
             });
 
             function selectMother(mother) {
+                currentMother = mother;
                 cardName.textContent = `Querida ${mother.name}`;
                 cardText.textContent = mother.text;
                 if (mother.img) modalBg.style.backgroundImage = `url('${mother.img}')`;
@@ -152,13 +178,32 @@
                     portraitImg.src = mother.portrait;
                     portraitHolder.style.display = 'block';
                 } else { portraitHolder.style.display = 'none'; }
+                
+                // Mostrar/Ocultar botón de álbum
+                viewAlbumBtn.style.display = (mother.gallery && mother.gallery.length > 0) ? 'block' : 'none';
+
                 personalCard.style.display = 'flex';
                 setTimeout(() => personalCard.classList.add('active'), 10);
                 suggestionsBox.style.display = 'none';
                 searchInput.value = '';
             }
 
-            // ABRIR MODALES DESDE EL NAV (ARREGLADO)
+            // Lógica del Álbum
+            viewAlbumBtn.onclick = () => {
+                if (!currentMother) return;
+                albumTitle.textContent = `Álbum de ${currentMother.name}`;
+                albumGrid.innerHTML = '';
+                currentMother.gallery.forEach(imgSrc => {
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.className = 'gallery-item';
+                    albumGrid.appendChild(img);
+                });
+                albumModal.style.display = 'flex';
+                setTimeout(() => albumModal.classList.add('active'), 10);
+            };
+
+            // Abrir otros modales
             document.getElementById('nav-family').onclick = (e) => {
                 e.preventDefault();
                 familyModal.style.display = 'flex';
@@ -175,7 +220,7 @@
                 if (value === "") return;
                 const found = mothersData.find(m => m.name.toLowerCase() === value || m.name.toLowerCase().startsWith(value));
                 if (found) selectMother(found);
-                else selectMother({ name: searchInput.value, text: "Hoy celebramos tu luz y todo el amor que das al mundo. ¡Feliz Día de la Madre!" });
+                else selectMother({ name: searchInput.value, text: "Hoy celebramos tu luz y todo el amor que das al mundo. ¡Feliz Día de la Madre!", gallery: [] });
             }
 
             searchInput.addEventListener('input', (e) => {

@@ -226,5 +226,37 @@ body {
     background: #fdfaf5; color: var(--gold-solid); padding-left: 30px;
 }
 
+/* BOTÓN DE ÁLBUM */
+.album-btn {
+    margin-top: 20px;
+    background: white; border: 1px solid var(--gold-solid);
+    color: var(--gold-solid); padding: 10px 25px; border-radius: 50px;
+    font-size: 0.8rem; letter-spacing: 1px; cursor: pointer;
+    transition: all 0.3s; font-weight: 600;
+}
+.album-btn:hover {
+    background: var(--gold-gradient); color: #43300e; border-color: transparent;
+    transform: scale(1.05);
+}
+
+/* CUADRÍCULA DEL ÁLBUM */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px; width: 100%; margin-top: 25px;
+    max-height: 60vh; overflow-y: auto; padding: 10px;
+}
+.gallery-item {
+    width: 100%; aspect-ratio: 1; border-radius: 15px;
+    object-fit: cover; cursor: pointer; transition: transform 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.gallery-item:hover { transform: scale(1.03); }
+
+/* Ajuste móvil para la cuadrícula */
+@media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
+
 ::-webkit-scrollbar { display: none; }
 * { -ms-overflow-style: none; scrollbar-width: none; }
