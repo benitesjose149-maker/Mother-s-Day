@@ -268,22 +268,22 @@ body {
     position: absolute;
     bottom: 60px; /* Posicionada encima de los controles del video */
     width: 85%;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.4); /* Más opaco para resaltar el texto negro */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 15px;
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    pointer-events: none; /* Permite hacer clic a través de la nota al video */
+    pointer-events: none;
     animation: slideUp 1s ease;
 }
 
 #nieta-video-text {
     font-size: 1rem;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    color: #222; /* Texto en negro para máxima visibilidad */
+    text-shadow: none; /* Quitamos la sombra blanca */
     line-height: 1.4;
     font-style: italic;
     font-family: 'Dancing Script', cursive;
