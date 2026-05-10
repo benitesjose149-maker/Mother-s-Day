@@ -128,14 +128,14 @@
             gallery: [
                 {
                     src: "./assets/madre10.jpg",
-                    caption: `Fecha  : 05/03/2016
+                    caption: `Fecha  : 07/11/2019
 Motivo : Tardes de relax y travesuras
 Opinion:
 Gracias por cuidarnos desde siempre, mamá. Tus caricias son nuestro mejor refugio y paz.`
                 },
                 {
                     src: "./assets/madre13.jpg",
-                    caption: `Fecha  : 10/01/2017
+                    caption: `Fecha  : 28/02/2017
 Motivo : Paseos que llenan el alma
 Opinion:
 Mamá, verte sonreír en cada paseo es nuestra mayor alegría. Gracias por compartir tu tiempo con nosotros.`
@@ -163,7 +163,7 @@ Gracias por estar presente en cada logro mío. Tu apoyo en el colegio significó
                 },
                 {
                     src: "./assets/madre7.jpg",
-                    caption: `Fecha  : 15/07/2018
+                    caption: `Fecha  : 31/12/2016
 Motivo : Tarde de juegos y risas
 Opinion:
 Eres la más divertida de todas, mamá. Gracias por llenar nuestra casa de risas y momentos felices.`
@@ -177,14 +177,14 @@ Gracias por ser nuestra guía y protectora. Contigo a nuestro lado, el mundo se 
                 },
                 {
                     src: "./assets/madre9.jpg",
-                    caption: `Fecha  : 10/05/2021
+                    caption: `Fecha  : 08/05/2022
 Motivo : Celebración escolar del Día de la Madre
 Opinion:
 Celebrar tu vida es lo que más nos gusta. Gracias por ser la mejor mamá del mundo entero.`
                 },
                 {
                     src: "./assets/madre12.jpg",
-                    caption: `Fecha  : 15/08/2021
+                    caption: `Fecha  : 04/08/2017
 Motivo : Viaje familiar a la sierra
 Opinion:
 Gracias por llevarnos a conocer el lugar de donde vienes. Este viaje a la sierra siempre estará en nuestro corazón.`
@@ -198,14 +198,14 @@ Atesoramos cada momento a tu lado. Gracias por tu amor incondicional que nos hac
                 },
                 {
                     src: "./assets/madre11.jpg",
-                    caption: `Fecha  : 24/12/2022
+                    caption: `Fecha  : 30/12/2016
 Motivo : Noche de fiesta y complicidad
 Opinion:
 Eres nuestra inspiración y nuestra mejor compañía. Gracias por ser una mamá tan increíble y moderna.`
                 },
                 {
                     src: "./assets/madre14.jpg",
-                    caption: `Fecha  : 20/02/2023
+                    caption: `Fecha  : 01/01/2017
 Motivo : Un día de sol y mar
 Opinion:
 Gracias por ser nuestra calma en medio del mar. Disfrutar del sol contigo es el mejor plan del mundo.`
@@ -226,7 +226,7 @@ Gracias por enseñarnos a disfrutar de los pequeños paseos. Tu felicidad es la 
                 },
                 {
                     src: "./assets/madre15.jpg",
-                    caption: `Fecha  : 12/11/2023
+                    caption: `Fecha  : 25/02/2026
 Motivo : El cumpleaños de Nicolás
 Opinion:
 Gracias por organizar los mejores cumpleaños y por ser el corazón que mantiene unida a esta familia.`
@@ -238,7 +238,6 @@ Gracias por organizar los mejores cumpleaños y por ser el corazón que mantiene
             const m = document.getElementById(id);
             m.classList.remove('active');
 
-            // Detener música si se cierra el visor de imágenes
             if (id === 'image-viewer') {
                 const audio = document.getElementById('viewer-audio');
                 audio.pause();
@@ -307,7 +306,6 @@ Gracias por organizar los mejores cumpleaños y por ser el corazón que mantiene
                 viewerText.textContent = imgData.caption;
                 imageViewer.style.display = 'flex';
 
-                // Iniciar música en el minuto 1 (60 segundos)
                 audio.currentTime = 60;
                 audio.play().catch(err => console.log("Autoplay bloqueado:", err));
 
