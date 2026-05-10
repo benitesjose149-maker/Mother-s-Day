@@ -336,8 +336,15 @@ Gracias por organizar los mejores cumpleaños y por ser el corazón que mantiene
 
             function performSearch() {
                 const value = searchInput.value.trim().toLowerCase();
-                if (value.includes("rosmery") || value.includes("mama") || value.includes("mamá")) showRosmery();
-                else if (value !== "") showRosmery();
+                const validTerms = ["rosmery", "mama", "mamá", "rosmery marcelo", "marcelo", "vazquez", "vazques"];
+                const searchBar = document.querySelector('.search-bar');
+                
+                if (validTerms.some(term => value === term || value.includes(term))) {
+                    showRosmery();
+                } else if (value !== "") {
+                    searchBar.classList.add('error-shake');
+                    setTimeout(() => searchBar.classList.remove('error-shake'), 500);
+                }
             }
 
             searchBtn.addEventListener('click', performSearch);
@@ -345,12 +352,16 @@ Gracias por organizar los mejores cumpleaños y por ser el corazón que mantiene
             closeCardBtn.onclick = () => closeModal('personal-card');
 
             searchInput.addEventListener('input', (e) => {
-                const value = e.target.value.toLowerCase();
-                if (value.length > 0) {
+                const value = e.target.value.toLowerCase().trim();
+                const validMatch = "rosmery".includes(value) || "mamá".includes(value) || "mama".includes(value);
+
+                if (value.length > 0 && validMatch) {
                     suggestionsBox.innerHTML = '<div class="suggestion-item">Revelar para Rosmery</div>';
                     suggestionsBox.style.display = 'block';
                     suggestionsBox.querySelector('.suggestion-item').onclick = showRosmery;
-                } else suggestionsBox.style.display = 'none';
+                } else {
+                    suggestionsBox.style.display = 'none';
+                }
             });
         });
     </script>
