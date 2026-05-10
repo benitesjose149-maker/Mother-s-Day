@@ -16,7 +16,6 @@
         <div class="main-card">
             <div class="top-pink-bar"></div>
 
-            <!-- Flores Decorativas -->
             <img src="./assets/flowers_white_bg_1777989859256.png" class="card-flower top-left" alt="">
             <img src="./assets/flowers_white_bg_1777989859256.png" class="card-flower bottom-right" alt="">
 
@@ -39,7 +38,8 @@
 
                 <div class="search-section">
                     <div class="search-bar">
-                        <input type="text" id="mother-search" placeholder="Escribe 'Rosmery' o 'Mamá' aquí..." autocomplete="off">
+                        <input type="text" id="mother-search" placeholder="Escribe 'Rosmery' o 'Mamá' aquí..."
+                            autocomplete="off">
                         <button class="gold-btn">REVELAR</button>
                     </div>
                     <div id="suggestions" class="suggestions"></div>
@@ -47,40 +47,38 @@
 
                 <p class="tagline">Una colección de momentos que atesoramos para siempre.</p>
 
-                <!-- REVEAL CARD -->
                 <div id="personal-card" class="reveal-overlay">
                     <div class="reveal-bg"></div>
                     <div class="reveal-content">
                         <button id="close-card" class="close-btn">&times;</button>
-                        
+
                         <div id="portrait-holder" class="portrait-frame" style="display: block !important;">
                             <img id="card-portrait" src="./assets/principal2.jpg" alt="Rosmery" class="portrait-img">
                         </div>
 
                         <h2 id="card-name">Querida Rosmery</h2>
-                        <p id="card-text" style="font-size: 1.1rem; line-height: 1.5; max-width: 600px; margin-bottom: 10px;"></p>
-                        <p id="card-signature" style="font-style: italic; color: #8a704d; font-weight: 600; margin-bottom: 25px;"></p>
-                        
-                        <!-- BOTONES DE ACCIÓN -->
-                        <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%;">
+                        <p id="card-text"
+                            style="font-size: 1.1rem; line-height: 1.5; max-width: 600px; margin-bottom: 10px;"></p>
+                        <p id="card-signature"
+                            style="font-style: italic; color: #8a704d; font-weight: 600; margin-bottom: 25px;"></p>
+
+                        <div
+                            style="display: flex; flex-direction: column; gap: 12px; align-items: center; width: 100%;">
                             <button id="view-video-btn" class="video-btn">🎬 VER VIDEO ESPECIAL</button>
                             <button id="view-album-btn" class="album-btn">🖼️ VER ÁLBUM FAMILIAR</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Modal: Reproductor de Video con Mensaje SUPERPUESTO -->
                 <div id="video-modal" class="viewer-modal">
                     <button class="viewer-close" onclick="stopVideo()">&times;</button>
-                    
-                    <!-- CONTENEDOR RELATIVO PARA QUE EL TEXTO FLOTE DENTRO -->
+
                     <div class="video-wrapper">
                         <video id="video-player" controls playsinline webkit-playsinline>
                             <source src="./assets/video_especial.mp4" type="video/mp4">
                             Tu navegador no soporta videos.
                         </video>
-                        
-                        <!-- MENSAJE FLOTANTE SOBRE EL VIDEO -->
+
                         <div class="video-overlay-note">
                             <p id="nieta-video-text"></p>
                             <div class="baby-icons">🍼🧸</div>
@@ -88,7 +86,6 @@
                     </div>
                 </div>
 
-                <!-- Modal: Álbum de Fotos -->
                 <div id="album-modal" class="reveal-overlay">
                     <div class="reveal-content">
                         <button class="close-btn" onclick="closeModal('album-modal')">&times;</button>
@@ -97,19 +94,18 @@
                     </div>
                 </div>
 
-                <!-- Visor de Fotos -->
                 <div id="image-viewer" class="viewer-modal">
                     <button class="viewer-close" onclick="closeModal('image-viewer')">&times;</button>
                     <img id="full-img" class="viewer-img" src="" alt="">
                     <p id="viewer-text" class="viewer-caption"></p>
                 </div>
 
-                <!-- Modal: Nuestra Familia -->
                 <div id="family-modal" class="reveal-overlay">
                     <div class="reveal-content">
                         <button class="close-btn" onclick="closeModal('family-modal')">&times;</button>
                         <h2>Nuestra Familia</h2>
-                        <p>Esta web es un regalo de todos nosotros para la persona más especial. <br><br> Rosmery, gracias por darnos tanto amor cada día. <br> ¡Eres nuestra mayor inspiración!</p>
+                        <p>Esta web es un regalo de todos nosotros para la persona más especial. <br><br> Rosmery,
+                            gracias por darnos tanto amor cada día. <br> ¡Eres nuestra mayor inspiración!</p>
                     </div>
                 </div>
             </main>
@@ -117,10 +113,10 @@
     </div>
 
     <script>
-        const rosmeryData = { 
-            name: "Rosmery Marcelo Vazques", 
+        const rosmeryData = {
+            name: "Rosmery Marcelo Vazques",
             text: "Mamá, gracias por ser nuestro pilar incondicional, por cada sacrificio y por el amor infinito que nos regalas cada día. Eres el corazón que mantiene unida a esta familia y nuestra mayor inspiración. Hoy celebramos tu vida, tu fuerza y tu dulzura. ¡Te amamos con todo el corazón, Rosmery!",
-            signature: "Atte: Tus hijos, pero más Anthony (las demás no hicieron nada)",
+            signature: "Atte: Tus hijos",
             nietaMessage: "Abuelita Rosmery, acabo de llegar al mundo y ya tengo el regalo más grande: tenerte a mi lado. Prometo crecer rápido para jugar juntas y darte muchos besos. ¡Feliz día!",
             img: "./assets/mother_appreciation_1_1777992656437.png",
             portrait: "./assets/principal2.jpg",
@@ -158,7 +154,7 @@
             const closeCardBtn = document.getElementById('close-card');
             const viewAlbumBtn = document.getElementById('view-album-btn');
             const viewVideoBtn = document.getElementById('view-video-btn');
-            
+
             const albumModal = document.getElementById('album-modal');
             const albumGrid = document.getElementById('album-grid');
             const portraitImg = document.getElementById('card-portrait');
@@ -206,7 +202,7 @@
                     img.onclick = () => openViewer(item);
                     img.onerror = () => img.style.display = 'none';
                     albumGrid.appendChild(img);
-                    setTimeout(() => { img.classList.add('animate'); }, 100 * (index + 1)); 
+                    setTimeout(() => { img.classList.add('animate'); }, 100 * (index + 1));
                 });
                 albumModal.style.display = 'flex';
                 setTimeout(() => albumModal.classList.add('active'), 10);
