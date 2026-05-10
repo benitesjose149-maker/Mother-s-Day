@@ -725,8 +725,59 @@ body {
     border: 3px solid white;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
     transform: scale(0.9);
-    transition: transform 0.4s;
+    transition: transform 0.4s, opacity 0.3s;
     background: #000;
+}
+
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 3rem;
+    padding: 20px;
+    cursor: pointer;
+    z-index: 3100;
+    transition: all 0.3s;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    backdrop-filter: blur(5px);
+}
+
+.nav-arrow:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-arrow.prev {
+    left: 40px;
+}
+
+.nav-arrow.next {
+    right: 40px;
+}
+
+@media (max-width: 768px) {
+    .nav-arrow {
+        font-size: 2rem;
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+    }
+
+    .nav-arrow.prev {
+        left: 10px;
+    }
+
+    .nav-arrow.next {
+        right: 10px;
+    }
 }
 
 .viewer-modal.active .viewer-img {
@@ -735,12 +786,18 @@ body {
 
 .viewer-caption {
     color: white;
-    margin-top: 20px;
+    margin-top: 25px;
     font-family: 'Inter', sans-serif;
     font-size: 1.1rem;
     text-align: center;
-    max-width: 80%;
-    line-height: 1.5;
+    max-width: 600px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .viewer-close {

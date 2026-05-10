@@ -96,7 +96,9 @@
 
                 <div id="image-viewer" class="viewer-modal">
                     <button class="viewer-close" onclick="closeModal('image-viewer')">&times;</button>
+                    <button class="nav-arrow prev" onclick="changeImage(-1)">&#10094;</button>
                     <img id="full-img" class="viewer-img" src="" alt="">
+                    <button class="nav-arrow next" onclick="changeImage(1)">&#10095;</button>
                     <p id="viewer-text" class="viewer-caption"></p>
                 </div>
 
@@ -121,23 +123,111 @@
             img: "./assets/mother_appreciation_1_1777992656437.png",
             portrait: "./assets/principal2.jpg",
             gallery: [
-                { src: "./assets/madre1.jpg", caption: "Nuestro primer gran recuerdo juntos." },
-                { src: "./assets/madre2.jpg", caption: "Celebrando la vida en familia." },
-                { src: "./assets/madre3.jpg", caption: "Momentos mágicos que guardamos en el corazón." },
-                { src: "./assets/madre4.jpg", caption: "Tu sonrisa es nuestra mayor alegría." },
-                { src: "./assets/madre5.jpg", caption: "Día de la Madre: Un día especial para una mujer única." },
-                { src: "./assets/madre6.jpg", caption: "Gracias por tu fuerza y tu ternura infinita." },
-                { src: "./assets/madre7.jpg", caption: "Siempre unidos, siempre juntos." },
-                { src: "./assets/madre8.jpg", caption: "Para la mejor mamá del mundo: Rosmery." },
-                { src: "./assets/madre9.jpg", caption: "Para la mejor mamá del mundo: Rosmery." },
-                { src: "./assets/madre10.jpg", caption: "Para la mejor mamá del mundo: Rosmery." },
-                { src: "./assets/madre11.jpg", caption: "Para la mejor mamá del mundo: Rosmery." },
-                { src: "./assets/madre12.jpg", caption: "Para la mejor mamá del mundo: Rosmery." },
-                { src: "./assets/madre13.jpg", caption: "Para la mejor mamá del mundo: Rosmery." },
-                { src: "./assets/madre14.jpg", caption: "Para la mejor mamá del mundo: Rosmery." },
-                { src: "./assets/madre15.jpg", caption: "Para la mejor mamá del mundo: Rosmery." }
-
-
+                {
+                    src: "./assets/madre10.jpg",
+                    caption: `Fecha  : 05/03/2016
+Motivo : Tardes de relax y travesuras
+Opinion:
+Gracias por cuidarnos desde siempre, mamá. Tus caricias son nuestro mejor refugio y paz.`
+                },
+                {
+                    src: "./assets/madre13.jpg",
+                    caption: `Fecha  : 10/01/2017
+Motivo : Paseos que llenan el alma
+Opinion:
+Mamá, verte sonreír en cada paseo es nuestra mayor alegría. Gracias por compartir tu tiempo con nosotros.`
+                },
+                {
+                    src: "./assets/madre6.jpg",
+                    caption: `Fecha  : 04/06/2017
+Motivo : Un abrazo cálido en familia
+Opinion:
+Nos encanta estar siempre a tu lado. Gracias por ser nuestra fortaleza y darnos tanto amor infinito.`
+                },
+                {
+                    src: "./assets/madre2.jpg",
+                    caption: `Fecha  : 04/08/2017
+Motivo : Salida e visita en Familia
+Opinion:
+Atesoramos este viaje familiar al pueblo. Gracias por unirnos siempre y crear recuerdos tan bonitos.`
+                },
+                {
+                    src: "./assets/madre5.jpg",
+                    caption: `Fecha  : 15/05/2018
+Motivo : Acompañandome en una fiesta cultural en el colegio
+Opinion:
+Gracias por estar presente en cada logro mío. Tu apoyo en el colegio significó todo para mí.`
+                },
+                {
+                    src: "./assets/madre7.jpg",
+                    caption: `Fecha  : 15/07/2018
+Motivo : Tarde de juegos y risas
+Opinion:
+Eres la más divertida de todas, mamá. Gracias por llenar nuestra casa de risas y momentos felices.`
+                },
+                {
+                    src: "./assets/madre8.jpg",
+                    caption: `Fecha  : 20/12/2019
+Motivo : Atardeceres con mis tesoros
+Opinion:
+Gracias por ser nuestra guía y protectora. Contigo a nuestro lado, el mundo se siente más seguro.`
+                },
+                {
+                    src: "./assets/madre9.jpg",
+                    caption: `Fecha  : 10/05/2021
+Motivo : Celebración escolar del Día de la Madre
+Opinion:
+Celebrar tu vida es lo que más nos gusta. Gracias por ser la mejor mamá del mundo entero.`
+                },
+                {
+                    src: "./assets/madre12.jpg",
+                    caption: `Fecha  : 15/08/2021
+Motivo : Viaje familiar a la sierra
+Opinion:
+Gracias por llevarnos a conocer el lugar de donde vienes. Este viaje a la sierra siempre estará en nuestro corazón.`
+                },
+                {
+                    src: "./assets/madre1.jpg",
+                    caption: `Fecha  : 17/08/2021
+Motivo : Nuestro recuerdo de nosotros dos
+Opinion:
+Atesoramos cada momento a tu lado. Gracias por tu amor incondicional que nos hace crecer felices.`
+                },
+                {
+                    src: "./assets/madre11.jpg",
+                    caption: `Fecha  : 24/12/2022
+Motivo : Noche de fiesta y complicidad
+Opinion:
+Eres nuestra inspiración y nuestra mejor compañía. Gracias por ser una mamá tan increíble y moderna.`
+                },
+                {
+                    src: "./assets/madre14.jpg",
+                    caption: `Fecha  : 20/02/2023
+Motivo : Un día de sol y mar
+Opinion:
+Gracias por ser nuestra calma en medio del mar. Disfrutar del sol contigo es el mejor plan del mundo.`
+                },
+                {
+                    src: "./assets/madre3.jpg",
+                    caption: `Fecha  : 04/08/2023
+Motivo : Salida a Plaza Norte
+Opinion:
+Nos divertimos mucho contigo ese día. Gracias por las risas y por ser una mamá tan especial.`
+                },
+                {
+                    src: "./assets/madre4.jpg",
+                    caption: `Fecha  : 04/08/2023
+Motivo : Visita o paseo por Mala 
+Opinion:
+Gracias por enseñarnos a disfrutar de los pequeños paseos. Tu felicidad es la nuestra, mamá.`
+                },
+                {
+                    src: "./assets/madre15.jpg",
+                    caption: `Fecha  : 12/11/2023
+Motivo : El cumpleaños de Nicolás
+Opinion:
+Gracias por organizar los mejores cumpleaños y por ser el corazón que mantiene unida a esta familia.`
+                },
             ]
         };
 
@@ -192,7 +282,11 @@
                 setTimeout(() => videoModal.classList.add('active'), 10);
             };
 
-            function openViewer(imgData) {
+            let currentImgIndex = 0;
+
+            function openViewer(index) {
+                currentImgIndex = index;
+                const imgData = rosmeryData.gallery[index];
                 const imageViewer = document.getElementById('image-viewer');
                 const fullImg = document.getElementById('full-img');
                 const viewerText = document.getElementById('viewer-text');
@@ -202,13 +296,30 @@
                 setTimeout(() => imageViewer.classList.add('active'), 10);
             }
 
+            window.changeImage = (direction) => {
+                currentImgIndex += direction;
+                if (currentImgIndex < 0) currentImgIndex = rosmeryData.gallery.length - 1;
+                if (currentImgIndex >= rosmeryData.gallery.length) currentImgIndex = 0;
+                
+                const imgData = rosmeryData.gallery[currentImgIndex];
+                const fullImg = document.getElementById('full-img');
+                const viewerText = document.getElementById('viewer-text');
+                
+                fullImg.style.opacity = '0';
+                setTimeout(() => {
+                    fullImg.src = imgData.src;
+                    viewerText.textContent = imgData.caption;
+                    fullImg.style.opacity = '1';
+                }, 200);
+            };
+
             viewAlbumBtn.onclick = () => {
                 albumGrid.innerHTML = '';
                 rosmeryData.gallery.forEach((item, index) => {
                     const img = document.createElement('img');
                     img.src = item.src;
                     img.className = 'gallery-item';
-                    img.onclick = () => openViewer(item);
+                    img.onclick = () => openViewer(index);
                     img.onerror = () => img.style.display = 'none';
                     albumGrid.appendChild(img);
                     setTimeout(() => { img.classList.add('animate'); }, 100 * (index + 1));
