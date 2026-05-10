@@ -709,6 +709,7 @@ body {
     opacity: 0;
     transition: opacity 0.4s;
     padding: 20px;
+    overflow-y: auto;
 }
 
 .viewer-modal.active {
@@ -802,11 +803,53 @@ body {
 
 .viewer-close {
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: 20px;
+    right: 20px;
     color: white;
-    font-size: 40px;
+    font-size: 45px;
     cursor: pointer;
-    background: none;
+    background: rgba(0, 0, 0, 0.3);
     border: none;
+    z-index: 3200;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    line-height: 1;
+}
+
+@media (max-width: 480px) {
+    .viewer-modal {
+        padding: 10px;
+        justify-content: flex-start;
+        overflow-y: auto;
+    }
+
+    .viewer-img {
+        width: 100%;
+        height: auto;
+        max-height: 45vh;
+        margin-top: 60px;
+    }
+
+    .viewer-caption {
+        font-size: 0.95rem;
+        padding: 15px;
+        margin-top: 15px;
+        max-width: 100%;
+        line-height: 1.5;
+    }
+
+    .nav-arrow {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+    }
+
+    .viewer-close {
+        top: 10px;
+        right: 10px;
+    }
 }
