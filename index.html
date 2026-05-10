@@ -100,6 +100,9 @@
                     <img id="full-img" class="viewer-img" src="" alt="">
                     <button class="nav-arrow next" onclick="changeImage(1)">&#10095;</button>
                     <p id="viewer-text" class="viewer-caption"></p>
+
+                    <!-- Audio para el visor -->
+                    <audio id="viewer-audio" src="./assets/COMO TE PAGO (Letra) LENIER.mp3"></audio>
                 </div>
 
                 <div id="family-modal" class="reveal-overlay">
@@ -234,6 +237,14 @@ Gracias por organizar los mejores cumpleaños y por ser el corazón que mantiene
         function closeModal(id) {
             const m = document.getElementById(id);
             m.classList.remove('active');
+
+            // Detener música si se cierra el visor de imágenes
+            if (id === 'image-viewer') {
+                const audio = document.getElementById('viewer-audio');
+                audio.pause();
+                audio.currentTime = 0;
+            }
+
             setTimeout(() => m.style.display = 'none', 500);
         }
 
@@ -290,9 +301,16 @@ Gracias por organizar los mejores cumpleaños y por ser el corazón que mantiene
                 const imageViewer = document.getElementById('image-viewer');
                 const fullImg = document.getElementById('full-img');
                 const viewerText = document.getElementById('viewer-text');
+                const audio = document.getElementById('viewer-audio');
+
                 fullImg.src = imgData.src;
                 viewerText.textContent = imgData.caption;
                 imageViewer.style.display = 'flex';
+
+                // Iniciar música en el minuto 1 (60 segundos)
+                audio.currentTime = 60;
+                audio.play().catch(err => console.log("Autoplay bloqueado:", err));
+
                 setTimeout(() => imageViewer.classList.add('active'), 10);
             }
 
@@ -300,11 +318,11 @@ Gracias por organizar los mejores cumpleaños y por ser el corazón que mantiene
                 currentImgIndex += direction;
                 if (currentImgIndex < 0) currentImgIndex = rosmeryData.gallery.length - 1;
                 if (currentImgIndex >= rosmeryData.gallery.length) currentImgIndex = 0;
-                
+
                 const imgData = rosmeryData.gallery[currentImgIndex];
                 const fullImg = document.getElementById('full-img');
                 const viewerText = document.getElementById('viewer-text');
-                
+
                 fullImg.style.opacity = '0';
                 setTimeout(() => {
                     fullImg.src = imgData.src;
@@ -338,7 +356,7 @@ Gracias por organizar los mejores cumpleaños y por ser el corazón que mantiene
                 const value = searchInput.value.trim().toLowerCase();
                 const validTerms = ["rosmery", "mama", "mamá", "rosmery marcelo", "marcelo", "vazquez", "vazques"];
                 const searchBar = document.querySelector('.search-bar');
-                
+
                 if (validTerms.some(term => value === term || value.includes(term))) {
                     showRosmery();
                 } else if (value !== "") {
